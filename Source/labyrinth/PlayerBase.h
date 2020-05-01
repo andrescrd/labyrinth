@@ -16,9 +16,15 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	FVector intialPosition;
+	float initialLife;
+
+	UPROPERTY(EditAnywhere)
+	int respawns;
+
 	UPROPERTY(EditAnywhere)
 	float life;
-	
+
 	UPROPERTY(EditAnywhere)
 	float velocity;
 

@@ -11,14 +11,25 @@ APlayerBase::APlayerBase()
 void APlayerBase::BeginPlay()
 {
 	Super::BeginPlay();
+	intialPosition = GetActorLocation();
+	initialLife = life;
 }
 
 void APlayerBase::Tick(float DeltaTime)
 {
-	if (life < 0)
+	if (life <= 0)
 	{
-		Destroy();
-	}
+		if(respawns > 0)
+		{
+			SetActorLocation(intialPosition);
+			life = initialLife;						
+			respawns--;
+		}
+		else
+		{
+			Destroy();
+		}	
+	}	
 }
 
 void APlayerBase::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
