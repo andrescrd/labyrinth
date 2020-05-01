@@ -1,34 +1,40 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 
 #include "PlayerBase.h"
+#include "Components/InputComponent.h"
+#include "Engine/World.h"
 
-// Sets default values
 APlayerBase::APlayerBase()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
-// Called when the game starts or when spawned
 void APlayerBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
-// Called every frame
 void APlayerBase::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
-
+	if (life < 0)
+	{
+		Destroy();
+	}
 }
 
-// Called to bind functionality to input
-void APlayerBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void APlayerBase::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	InputComponent->BindAxis("Forward", this, &APlayerBase::ForwardAxis);
+	InputComponent->BindAxis("Side", this, &APlayerBase::SideAxis);
 }
 
+void APlayerBase::ForwardAxis(float value)
+{
+	float movementX = value * velocity * GetWorld()->GetDeltaSeconds();
+	AddActorLocalOffset(FVector(movementX, 0, 0), true);
+}
+
+void APlayerBase::SideAxis(float value)
+{
+	float movementY = value * velocity * GetWorld()->GetDeltaSeconds();
+	AddActorLocalRotation(FRotator(0, movementY, 0), true);
+}
