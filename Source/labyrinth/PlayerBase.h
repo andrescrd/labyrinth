@@ -16,6 +16,7 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	class ACheckpoint* currentCheckpoint;
 	FVector intialPosition;
 	float initialLife;
 	int keys;
