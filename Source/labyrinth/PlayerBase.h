@@ -18,6 +18,7 @@ protected:
 public:
 	FVector intialPosition;
 	float initialLife;
+	int keys;
 
 	UPROPERTY(EditAnywhere)
 	int respawns;

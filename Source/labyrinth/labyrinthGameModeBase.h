@@ -13,5 +13,14 @@ UCLASS()
 class LABYRINTH_API AlabyrinthGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	AlabyrinthGameModeBase();
+
+	int pickedObject;
+
+	UPROPERTY(EditAnywhere)
+	int objectToPick;
+
+	virtual void Tick(float deltaSecond) override;
 };

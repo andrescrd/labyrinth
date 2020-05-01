@@ -1,21 +1,20 @@
 
 #include "DoorKey.h"
-
-ADoorKey::ADoorKey()
-{
-	PrimaryActorTick.bCanEverTick = true;
-
-}
+#include "PlayerBase.h"
 
 void ADoorKey::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	OnActorBeginOverlap.AddDynamic(this, &ADoorKey::OnOverlap);
 }
 
-void ADoorKey::Tick(float DeltaTime)
+void ADoorKey::OnOverlap(AActor *me, AActor *other)
 {
-	Super::Tick(DeltaTime);
+	APlayerBase *player = Cast<APlayerBase>(other);
 
+	if (other != nullptr)
+	{
+		player->keys++;
+		Destroy();
+	}
 }
-

@@ -2,10 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "DoorKey.generated.h"
+#include "ObjectToPick.generated.h"
 
 UCLASS()
-class LABYRINTH_API ADoorKey : public AActor
+class LABYRINTH_API AObjectToPick : public AActor
 {
 	GENERATED_BODY()
 
@@ -15,4 +15,5 @@ protected:
 private:
 	UFUNCTION()
 	void OnOverlap(AActor *me, AActor *other);
+
 };

@@ -15,7 +15,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-public:	
-	virtual void Tick(float DeltaTime) override;
+
+private:
+	UFUNCTION()
+	void OnOverlap(AActor *me, AActor *other);
 
 };
