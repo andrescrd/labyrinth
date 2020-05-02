@@ -18,23 +18,27 @@ protected:
 public:
 	class ACheckpoint* currentCheckpoint;
 	FVector intialPosition;
-	float initialLife;
-	int keys;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		float initialLife;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		int keys;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		int respawns;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		float life;
 
 	UPROPERTY(EditAnywhere)
-	int respawns;
+		float velocity;
 
 	UPROPERTY(EditAnywhere)
-	float life;
-
-	UPROPERTY(EditAnywhere)
-	float velocity;
-
-	UPROPERTY(EditAnywhere)
-	float velocityRotation;
+		float velocityRotation;
 
 	virtual void Tick(float DeltaTime) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void ForwardAxis(float value);
 	void SideAxis(float value);
